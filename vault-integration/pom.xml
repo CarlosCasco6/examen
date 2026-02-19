@@ -2,9 +2,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
     <modelVersion>4.0.0</modelVersion>
 
-    <!-- 1️⃣ Hereda del pom padre multi-módulo -->
+    <!-- Hereda del pom padre multi-módulo -->
     <parent>
         <groupId>com.example</groupId>
         <artifactId>microservicios-spring</artifactId>
@@ -17,43 +18,56 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <!-- 2️⃣ No es necesario declarar maven.compiler.source/target si el padre ya tiene java.version=17 -->
     </properties>
 
     <dependencies>
-        <!-- 3️⃣ Starter base de Spring Boot -->
+
+        <!-- Starter base -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
         </dependency>
 
-        <!-- 4️⃣ Dependencias Web y JPA -->
+        <!-- Web -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+
+        <!-- JPA -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
 
-        <!-- 5️⃣ SQL Server JDBC corregido: usamos versión oficial que existe -->
+        <!-- SQL Server (sin versión, la hereda del padre) -->
         <dependency>
             <groupId>com.microsoft.sqlserver</groupId>
             <artifactId>mssql-jdbc</artifactId>
-            <version>12.6.1.jre17</version> <!-- 🔹 Cambiado de 9.4.1.jre17 a 12.6.1.jre17 compatible-->
         </dependency>
 
-        <!-- 6️⃣ Vault Config -->
+        <!-- Vault -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-vault-config</artifactId>
         </dependency>
 
-        <!-- 7️⃣ Eureka Client -->
+        <!-- Eureka Client -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
+
     </dependencies>
+
+    <!-- Necesario para que el jar sea ejecutable -->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
 </project>
